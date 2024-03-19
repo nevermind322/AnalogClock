@@ -94,6 +94,7 @@ class AnalogClockView @JvmOverloads constructor(
         )
     }
 
+
     private fun Canvas.drawHourHand(loc: Double) {
         val angle = Math.PI * loc / 6.0 - Math.PI / 2.0
         val clockSize = min(width, height)
@@ -109,13 +110,16 @@ class AnalogClockView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (width > height)
-            rect.set((width - height) / 2, 0, width - ((width - height) / 2), height)
-        else if (height > width)
-            rect.set(0, (height - width) / 2, width, height - ((height - width) / 2))
-        else
-            rect.set(0, 0, width, height)
 
+        val w = width
+        val h = height
+
+        if (w > h)
+            rect.set((w - h) / 2, 0, w - ((w - h) / 2), h)
+        else if (h > w)
+            rect.set(0, (h - w) / 2, w, h - ((h - w) / 2))
+        else
+            rect.set(0, 0, w, h)
         canvas.drawBitmap(
             clockBitmap, null, rect, null
         )
